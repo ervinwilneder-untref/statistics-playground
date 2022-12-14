@@ -1,0 +1,76 @@
+version: '0.1'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      - MYSQL_DATABASE=metabase-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=admin
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mysql:/home/
+    command: --default-authentication-plugin=mysql_native_password
+    expose:
+      - 3306
+
+  metabase:
+    image: metabase/metabase
+    container_name: metabase
+    restart: always
+    environment:
+      - MB_DB_FILE=/metabase-data/metabase.db
+      - MB_DB_TYPE=mysql
+      - MB_DB_DBNAME=metabase-db
+      - MB_DB_PORT=3306
+      - MB_DB_USER=user
+      - MB_DB_HOST=db
+      - MB_DB_PASS=password
+      - JAVA_TIMEZONE=America/Buenos_Aires
+    ports:
+      - 3000:3000
+    volumes:
+      - mb-data:/metabase-data
+    depends_on:
+      - db
+  
+  rstudio:
+    image: rocker/tidyverse
+    container_name: rstudio
+    restart: always
+    ports:
+      - 8787:8787
+    environment:
+      - ROOT=true
+      - DISABLE_AUTH=true
+    volumes:
+      - rstudio-data:/home/rstudio/.config/rstudio
+      - r-data:/usr/local/lib/R
+      - ./rstudio:/home/rstudio
+
+  jupyter:
+    image: jupyter/datascience-notebook
+    container_name: jupyter
+    restart: always
+    ports:
+      - 8888:8888
+    user: root
+    environment:
+      - NB_USER=user
+      - PASSWORD=password
+      - CHOWN_HOME=yes
+      - GRANT_SUDO=yes
+      - RESTARTABLE=yes
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./jupyter:/home/user
+    command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
+
+volumes:
+  db-data:
+  mb-data:
+  rstudio-data:
+  r-data:
