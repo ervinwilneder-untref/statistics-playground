@@ -7,4 +7,4 @@ Si todo sale ok, deberían poder acceder a:
 * RStudio http://localhost:8787/
 * Metabase http://localhost:3000/
 
-El repo incluye una carpeta _mysql_ con lo necesario para instalar la base de datos sakila https://dev.mysql.com/doc/sakila/en/sakila-structure.html, muy útil para practica SQL
+El repo incluye una carpeta _mysql_ con lo necesario para instalar la base de datos sakila https://dev.mysql.com/doc/sakila/en/sakila-structure.html, muy útil para practicar SQL
