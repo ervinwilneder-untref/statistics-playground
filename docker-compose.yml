@@ -57,6 +57,7 @@ services:
     restart: always
     ports:
       - 8888:8888
+      - 4200:4200
     user: root
     environment:
       - NB_USER=user
@@ -68,6 +69,8 @@ services:
     volumes:
       - ./jupyter:/home/user
     command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
+    expose:
+      - 4200
 
 volumes:
   db-data:
