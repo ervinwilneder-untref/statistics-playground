@@ -39,7 +39,7 @@ services:
   
   rstudio:
     build: ./rstudio
-    image: statistics-playground-rstudio
+    image: statistics-playground/rstudio
     container_name: rstudio
     restart: always
     ports:
