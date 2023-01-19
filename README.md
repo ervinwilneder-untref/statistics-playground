@@ -8,3 +8,5 @@ Si todo sale ok, deberían poder acceder a:
 * Metabase http://localhost:3000/
 
 El repo incluye una carpeta _mysql_ con lo necesario para instalar la base de datos sakila https://dev.mysql.com/doc/sakila/en/sakila-structure.html, muy útil para practicar SQL
+
+El servicio de rstudio se construye a partir de una imagen personalizada con todas las librerías utilizadas en las materias Análisis y Métodos Estadísticos, y Métodos No Paramétricos, de la carrera Lic. en Estadística (UNTREF).
