@@ -1,3 +1,5 @@
 /jupyter
 /mysql
-/rstudio
+/rstudio/.config
+/rstudio/.local
+.vscode
