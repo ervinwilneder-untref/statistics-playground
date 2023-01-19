@@ -38,7 +38,7 @@ services:
       - db
   
   rstudio:
-    image: rocker/tidyverse
+    build: ./rstudio
     container_name: rstudio
     restart: always
     ports:
